@@ -14,6 +14,7 @@
 - **2024-06-24:** [pravdomil](https://github.com/pravdomil) has provided a much need update to UDAV2 for 16bit image creation in order to make stunning 3D Bas-Reliefs! I am currently in the process of updating the gradio webui to include both 16bit single image & 16bit batch image creation which will be pushed in the coming days.
 - **2024-06-25:** Working on a beta version of UDAV2 as an a1111 extension & will be released next week, so stay-tuned.
 - **2024-06-27:** A1111 extension released!
+- **2024-06-29:** Updated Forge extension release [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2), to prevent conflicts w/ pre-existing installed extensions in Forge!
 
 ## Installation
 
