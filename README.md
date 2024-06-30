@@ -26,9 +26,11 @@ git clone https://github.com/MackinationsAi/sd-webui-udav2.git
 
 **(I've registered the extension, hopefully in the next couple of days it will be added to the index.json & you'll be able to install the extension directly from the a1111 extension tab)* 
 
+## **Important*
+It usually takes between 45-90 secs the first time you launch the webui after installing the extension (as it is downloading the models, once everything is installed you will see in cmd that everything has been installed & will progress w/ the launch).
+
 ## Notes
 
-- *Important* - It usually takes between 45-90 secs the first time you launch the webui after installing the extension (as it is downloading the models, I will be adding a print function soon that lets you know in cmd that it is working & not frozen).
 - This extension has basically all of the same features & functionality as the main [UDAV2](https://github.com/MackinationsAi/Upgraded-Depth-Anything-V2) stand-alone repo w/ some minor changes for the conversion to a1111 extension to work properly.
 - The 'Today's Depth Gallery' tab automatically updates after each single image or batch image processing for the current day.
 - All of the outputs are saved in a very similar structure to 'txt2img' & 'img2img' in the main a1111 outputs folder under 'depths'
