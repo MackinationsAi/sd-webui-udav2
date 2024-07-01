@@ -6,7 +6,7 @@ from depth_anything_v2.dpt import DepthAnythingV2
 import cv2
 from tqdm import tqdm
 import matplotlib
-from modules import script_callbacks, shared
+from modules import devices, script_callbacks, shared
 from modules.scripts import basedir
 from pathlib import Path
 import sys
@@ -24,7 +24,7 @@ ROOT_DIR = Path().absolute()
 extension_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(extension_dir)
 
-DEVICE = 'cuda' if torch.cuda.is_available() else 'mps' if torch.backends.mps.is_available() else 'cpu'
+DEVICE = devices.get_device_for('udav2')
 
 model_configs = {
     'vits': {'encoder': 'vits', 'features': 64, 'out_channels': [48, 96, 192, 384]},
