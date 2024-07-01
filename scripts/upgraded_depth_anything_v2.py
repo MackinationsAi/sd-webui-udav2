@@ -6,7 +6,7 @@ from depth_anything_v2.dpt import DepthAnythingV2
 import cv2
 from tqdm import tqdm
 import matplotlib
-from modules import devices, script_callbacks, shared, util, paths_internal
+from modules import devices, script_callbacks, shared, util, paths_internal, modelloader
 from modules.scripts import basedir
 from pathlib import Path
 import sys
@@ -25,6 +25,8 @@ shared.options_templates.update(shared.options_section(('saving-paths', 'Paths f
 }))
 
 
+extension_dir = basedir()
+checkpoints_dir = os.path.join(extension_dir, 'checkpoints')
 DEVICE = devices.get_device_for('udav2')
 
 model_configs = {
@@ -33,11 +35,16 @@ model_configs = {
     'vitl': {'encoder': 'vitl', 'features': 256, 'out_channels': [256, 512, 1024, 1024]},
 }
 
+checkpoints = {
+    'vits': ("depth_anything_v2_vits.safetensors", 'https://huggingface.co/MackinationsAi/Depth-Anything-V2_Safetensors/resolve/main/depth_anything_v2_vits.safetensors', 'a7c1a8c8cdd7885fb8391069cd1eee789126c8d896f7de6750499b1097f817ea'),
+    'vitb': ("depth_anything_v2_vitb.safetensors", 'https://huggingface.co/MackinationsAi/Depth-Anything-V2_Safetensors/resolve/main/depth_anything_v2_vitb.safetensors', '386758cbd2a2cac62ca62286d3ba810734561b3097d86a585dd3dac357153941'),
+    'vitl': ("depth_anything_v2_vitl.safetensors", 'https://huggingface.co/MackinationsAi/Depth-Anything-V2_Safetensors/resolve/main/depth_anything_v2_vitl.safetensors', 'f075a9099f94bae54a5bfe21a1423346429309bae40abb85b9935985b1f35a09'),
+}
+
 
 def load_model(encoder):
-    checkpoint_path = os.path.join(os.path.dirname(__file__), '..', 'checkpoints', f'depth_anything_v2_{encoder}.safetensors')
-    if not os.path.exists(checkpoint_path):
-        raise FileNotFoundError(f"Checkpoint file not found: {checkpoint_path}")
+    checkpoint_filename, checkpoint_url, sha256 = checkpoints.get(encoder, None)
+    checkpoint_path = modelloader.load_file_from_url(checkpoint_url, model_dir=checkpoints_dir, file_name=checkpoint_filename, hash_prefix=sha256)
 
     model = DepthAnythingV2(**model_configs[encoder])
     state_dict = load_file(checkpoint_path)
