@@ -15,6 +15,7 @@
 - **2024-06-25:** Working on a beta version of UDAV2 as an a1111 extension & will be released next week, so stay-tuned.
 - **2024-06-27:** A1111 extension released!
 - **2024-06-29:** Updated Forge extension release [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2), to prevent conflicts w/ pre-existing installed extensions in Forge!
+- **2024-07-01:** Extension has been added to the extension index.json! You can now download the extension directly inside A111.
 
 ## Installation
 
@@ -23,8 +24,6 @@ All you need to do is clone this repo into the `stable-diffusion-webui/extension
 ```
 git clone https://github.com/MackinationsAi/sd-webui-udav2.git
 ```
-
-**(I've registered the extension, hopefully in the next couple of days it will be added to the index.json & you'll be able to install the extension directly from the a1111 extension tab)* 
 
 ## **Important*
 It usually takes between 45-90 secs the first time you launch the webui after installing the extension (as it is downloading the models, once everything is installed you will see in cmd that everything has been installed & will progress w/ the launch).
