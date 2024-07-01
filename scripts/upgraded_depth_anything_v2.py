@@ -1,6 +1,5 @@
 import numpy as np
 from PIL import Image
-import torch
 from safetensors.torch import load_file
 from depth_anything_v2.dpt import DepthAnythingV2
 import cv2
@@ -8,8 +7,6 @@ from tqdm import tqdm
 import matplotlib
 from modules import devices, script_callbacks, shared, util, paths_internal, modelloader
 from modules.scripts import basedir
-from pathlib import Path
-import sys
 import os
 import gradio as gr
 import tempfile
