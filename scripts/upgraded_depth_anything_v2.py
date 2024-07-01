@@ -21,9 +21,6 @@ import time
 
 ROOT_DIR = Path().absolute()
 
-extension_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(extension_dir)
-
 DEVICE = devices.get_device_for('udav2')
 
 model_configs = {
