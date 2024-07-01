@@ -19,8 +19,6 @@ import time
 # sd-webui-udav2 extension code by: MackinationsAi
 # original underlying code by: DepthAnything
 
-ROOT_DIR = Path().absolute()
-
 DEVICE = devices.get_device_for('udav2')
 
 model_configs = {
