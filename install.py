@@ -3,17 +3,6 @@ import launch
 
 extension_dir = os.path.dirname(os.path.realpath(__file__))
 
-dependencies = [
-    ("gradio", "gradio"),
-    ("safetensors", "safetensors"),
-    ("matplotlib", "matplotlib"),
-    ("opencv-python", "opencv-python"),
-    ("argparse", "argparse")
-]
-
-for package, name in dependencies:
-    if not launch.is_installed(name):
-        launch.run_pip(f"install {package}", package)
 
 def download_file(url, dest):
     if not os.path.exists(dest):
