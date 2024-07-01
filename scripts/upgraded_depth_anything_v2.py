@@ -6,7 +6,7 @@ from depth_anything_v2.dpt import DepthAnythingV2
 import cv2
 from tqdm import tqdm
 import matplotlib
-from modules import devices, script_callbacks, shared
+from modules import devices, script_callbacks, shared, util, paths_internal
 from modules.scripts import basedir
 from pathlib import Path
 import sys
@@ -18,6 +18,12 @@ import time
 
 # sd-webui-udav2 extension code by: MackinationsAi
 # original underlying code by: DepthAnything
+
+
+shared.options_templates.update(shared.options_section(('saving-paths', 'Paths for saving'), {
+    'outdir_udav2': shared.OptionInfo(util.truncate_path(os.path.join(paths_internal.default_output_dir, 'depths', 'vis_image_depths')), 'Output directory for UDAV2 images', component_args=shared.hide_dirs),
+}))
+
 
 DEVICE = devices.get_device_for('udav2')
 
@@ -91,7 +97,7 @@ def process_image(image, colour_map_method, encoder, selection):
     grey_depth = Image.fromarray(depth)
     
     date_str = time.strftime("%Y-%m-%d")
-    output_base_path = os.path.join('outputs', 'depths', 'vis_image_depths', date_str)
+    output_base_path = os.path.join(shared.opts.outdir_udav2, date_str)
     os.makedirs(output_base_path, exist_ok=True)
     
     grey_depth_filename = save_image_with_structure(grey_depth, '', '_greyscale_depth_map', output_base_path)
@@ -117,7 +123,7 @@ def process_video(video_paths, output_path, input_size, encoder, colour_map_meth
 
     date_str = time.strftime("%Y-%m-%d")
     if not output_path:
-        output_base_path = os.path.join('outputs', 'depths', 'vis_vid_depths', date_str)
+        output_base_path = os.path.join(shared.opts.outdir_udav2, date_str)
     else:
         output_base_path = output_path
     os.makedirs(output_base_path, exist_ok=True)
@@ -334,7 +340,7 @@ def on_ui_tabs():
             gr.Markdown()
 
             date_str = time.strftime("%Y-%m-%d")
-            gallery_path = os.path.join('outputs', 'depths', 'vis_image_depths', date_str, '*')
+            gallery_path = os.path.join(shared.opts.outdir_udav2, date_str, '*')
             example_files = glob.glob(gallery_path)
             example_files = sort_by_creation_time(example_files)  # Sort files by creation time
             
@@ -350,7 +356,7 @@ def on_ui_tabs():
 
         def update_gallery():
             date_str = time.strftime("%Y-%m-%d")
-            gallery_path = os.path.join('outputs', 'depths', 'vis_image_depths', date_str, '*')
+            gallery_path = os.path.join(shared.opts.outdir_udav2, date_str, '*')
             example_files = glob.glob(gallery_path)
             example_files = sort_by_creation_time(example_files)
             return example_files
