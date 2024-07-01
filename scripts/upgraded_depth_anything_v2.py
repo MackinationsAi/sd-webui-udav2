@@ -241,7 +241,7 @@ def on_ui_tabs():
             with gr.Row():
                 model_encoder_image_single = gr.Dropdown(label="Select Model Encoder:", choices=encoders, value='vitl')
             with gr.Row():
-                input_image = gr.Image(label="Input Image", type='filepath', elem_id='img-display-input', height=794, display_fn=lambda x: x)
+                input_image = gr.Image(label="Input Image", type='numpy', elem_id='img-display-input', height=794, display_fn=lambda x: x)
                 depth_image_slider = gr.Image(label="Colourized Depth Map View", elem_id='img-display-output', height=794, display_fn=lambda x: x)
                 grey_depth_file_single = gr.Image(label="Greyscale Depth Map View", elem_id='img-display-output', height=794, display_fn=lambda x: x)
             with gr.Row():
@@ -251,8 +251,7 @@ def on_ui_tabs():
                     colour_map_selection_single = gr.Dropdown(label="Colour Map Method Selection:", choices=colour_map_selections, value='Default')
             submit_single = gr.Button(value="Compute Depth for Single Image", variant="primary", height=26)
 
-            def on_submit_single(image_path, colour_map_method, encoder, selection):
-                image = np.array(Image.open(image_path))
+            def on_submit_single(image, colour_map_method, encoder, selection):
                 colourized_filenames, grey_depth_filename = process_image(image, colour_map_method, encoder, selection)
                 first_colourized_image = Image.open(colourized_filenames[0])
                 first_colourized_image_np = np.array(first_colourized_image)
