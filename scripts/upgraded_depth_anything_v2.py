@@ -32,6 +32,7 @@ model_configs = {
     'vitl': {'encoder': 'vitl', 'features': 256, 'out_channels': [256, 512, 1024, 1024]},
 }
 
+
 def load_model(encoder):
     checkpoint_path = os.path.join(os.path.dirname(__file__), '..', 'checkpoints', f'depth_anything_v2_{encoder}.safetensors')
     if not os.path.exists(checkpoint_path):
@@ -43,28 +44,34 @@ def load_model(encoder):
     model = model.to(DEVICE).eval()
     return model
 
+
 def predict_depth(model, image):
     return model.infer_image(image)
+
 
 def save_image_with_structure(image, prefix, suffix, output_base_path):
     filename = get_next_filename(output_base_path, prefix, suffix, '.png')
     image.save(filename)
     return filename
 
+
 def save_colourized_image_with_structure(image, prefix, suffix, colour_map_method, output_base_path):
     filename = get_next_filename(output_base_path, prefix, f'_{colour_map_method}{suffix}', '.png')
     image.save(filename)
     return filename
 
+
 def save_video_with_structure(base_path, base_filename, suffix):
     filename = get_next_filename(base_path, f'_{base_filename}', suffix, '.mp4')
     return filename
+
 
 def get_next_filename(base_path, prefix, suffix, extension):
     i = 1
     while os.path.exists(f"{base_path}/{i:04d}{prefix}{suffix}{extension}"):
         i += 1
     return f"{base_path}/{i:04d}{prefix}{suffix}{extension}"
+
 
 full_colour_map_methods = [
     'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'BuGn_r', 'BuPu', 'BuPu_r', 'CMRmap', 'CMRmap_r', 'GnBu', 'GnBu_r', 'Grays', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd', 'OrRd_r', 'Oranges', 'Oranges_r', 'PRGn', 'PRGn_r', 'PiYG', 'PiYG_r', 'PuBu', 'PuBuGn', 'PuBuGn_r', 'PuBu_r', 'PuOr', 'PuOr_r', 'PuRd', 'PuRd_r', 'Purples', 'Purples_r', 'RdBu', 'RdBu_r', 'RdGy', 'RdGy_r', 'RdPu', 'RdPu_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn', 'RdYlGn_r', 'Reds', 'Reds_r', 'Spectral', 'Spectral_r', 'Wistia', 'Wistia_r', 'YlGn', 'YlGnBu', 'YlGnBu_r', 
@@ -77,6 +84,7 @@ colour_map_methods = [
     'twilight', 'rainbow', 'gist_rainbow', 'gist_ncar', 'gist_earth', 'turbo',
     'jet', 'afmhot', 'copper', 'seismic', 'hsv', 'brg', 'All'
 ]
+
 
 def process_image(image, colour_map_method, encoder, selection):
     model = load_model(encoder)
@@ -107,6 +115,7 @@ def process_image(image, colour_map_method, encoder, selection):
         coloured_depth_image = Image.fromarray(coloured_depth)
         depth_filename = save_colourized_image_with_structure(coloured_depth_image, '', '_coloured_depth_map', colour_map_method, output_base_path)
         return [depth_filename], grey_depth_filename
+
 
 def process_video(video_paths, output_path, input_size, encoder, colour_map_method, greyscale):
     model = load_model(encoder)
@@ -180,8 +189,10 @@ def process_video(video_paths, output_path, input_size, encoder, colour_map_meth
 
     return [], None
 
+
 def sort_by_creation_time(file_list):
     return sorted(file_list, key=os.path.getctime)
+
 
 css = """
 #img-display-container {
@@ -204,6 +215,7 @@ button[aria-label="Clear"] {
     object-fit: cover; /* Ensure the image covers the specified height */
 }
 """
+
 
 def on_ui_tabs():
     title = """
@@ -354,5 +366,6 @@ def on_ui_tabs():
         submit_video_batch.click(update_gallery, outputs=[gallery])
 
     return [(UDAV2, "UDAV2", "udav2")]
+
 
 script_callbacks.on_ui_tabs(on_ui_tabs)
