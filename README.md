@@ -14,19 +14,20 @@
 - **2024-06-24:** [pravdomil](https://github.com/pravdomil) has provided a much need update to UDAV2 for 16bit image creation in order to make stunning 3D Bas-Reliefs! I am currently in the process of updating the gradio webui to include both 16bit single image & 16bit batch image creation which will be pushed in the coming days.
 - **2024-06-25:** Working on a beta version of UDAV2 as an a1111 extension & will be released next week, so stay-tuned.
 - **2024-06-27:** A1111 extension released!
-- **2024-06-29:** Updated Forge extension release [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2), to prevent conflicts w/ pre-existing installed extensions in Forge!
-- **2024-07-01:** Extension has been added to the extension index.json! You can now download the extension directly inside A111.
+- **2024-06-29:** Updated forge extension release [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2), to prevent conflicts w/ pre-existing installed extensions in Forge! ***OUTDATED***
+- **2024-07-01:** Extension has been added to the extension index.json! You can now install this extension directly inside A1111.
+- **2024-07-03:** Released v0.0.3 of [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2_v0.0.3), meant for anyone using the ***forge-webui***!
 
 ## Installation
 
-All you need to do is clone this repo into the `stable-diffusion-webui/extensions` folder & then run a1111.
+All you need to do is clone this repo into the `stable-diffusion-webui/extensions` folder & then run a1111. *Or* You can install the extension directly from the a1111 extensions tab now! 
 
 ```
 git clone https://github.com/MackinationsAi/sd-webui-udav2.git
 ```
 
 ## **Important*
-It usually takes between 45-90 secs the first time you launch the webui after installing the extension (as it is downloading the models, once everything is installed you will see in cmd that everything has been installed & will progress w/ the launch).
+If you want to use this extension w/ `stable-diffusion-forge-webui` please install this extension [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2_v0.0.3), ***NOT*** `sd-webui-udav2`.
 
 ## Notes
 
@@ -34,6 +35,7 @@ It usually takes between 45-90 secs the first time you launch the webui after in
 - The 'Today's Depth Gallery' tab automatically updates after each single image or batch image processing for the current day.
 - All of the outputs are saved in a very similar structure to 'txt2img' & 'img2img' in the main a1111 outputs folder under 'depths'
 - I'm still making updates to the main which I will push to this extension when possible! *(Including 16bit for hires 3D depth mapping)*
+- Bug fixed - ~It usually took between 45-90 secs the first time you launch the webui after installing the extension (as it is downloading the models, once everything is installed you will see in cmd that everything has been installed & will progress w/ the launch).~
 
 ## Original DAV2 Github Repo Creds
 <div align="center">
