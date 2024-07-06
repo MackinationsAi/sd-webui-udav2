@@ -17,6 +17,7 @@
 - **2024-06-29:** Updated forge extension release [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2), to prevent conflicts w/ pre-existing installed extensions in Forge! ***OUTDATED***
 - **2024-07-01:** Extension has been added to the extension index.json! You can now install this extension directly inside A1111.
 - **2024-07-03:** Released v0.0.3 of [sd-forge-udav2](https://github.com/MackinationsAi/sd-webui-udav2/releases/tag/sd-forge-udav2_v0.0.3), meant for anyone using the ***forge-webui***!
+- **2024-07-03:** [v1.1.452] [sd-webui-controlnet](https://github.com/Mikubill/sd-webui-controlnet/) now has a depth_anything_v2 preprocessor🔥! *Update transformers dependency to [transformers-4.44.1](https://github.com/MackinationsAi/sd-webui-controlnet/releases/tag/transformers-4.44.1) to use the new depth_anything_v2 controlnet preprocessor.*
 
 ## Installation
 
