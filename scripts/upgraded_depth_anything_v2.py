@@ -277,7 +277,7 @@ def on_ui_tabs():
             with gr.Row():
                 model_encoder_image_batch = gr.Dropdown(label="Select Model Encoder:", choices=encoders, value='vitl')            
             with gr.Row():
-                input_images = gr.Files(label="Upload Images", type="file", elem_id="img-display-input")
+                input_images = gr.Files(label="Upload Images", type="filepath", elem_id="img-display-input")
             with gr.Row():
                 with gr.Column(scale=8):
                     colour_map_dropdown_batch = gr.Dropdown(label="Select Colour Map Method:", choices=colour_map_methods, value='Spectral')            
@@ -329,7 +329,7 @@ def on_ui_tabs():
             with gr.Row():
                 model_encoder_video_batch = gr.Dropdown(label="Select Model Encoder:", choices=encoders, value='vitl')
             with gr.Row():
-                input_videos = gr.Files(label="Input Videos", type="file", elem_id='img-display-input')
+                input_videos = gr.Files(label="Input Videos", type="filepath", elem_id='img-display-input')
             with gr.Row():
                 with gr.Column(scale=5):
                     colour_map_dropdown_video_batch = gr.Dropdown(label="Select Colour Map Method:", choices=colour_map_methods, value='Spectral')
